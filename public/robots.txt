@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://testableapp.latentgenius.ai/sitemap.xml

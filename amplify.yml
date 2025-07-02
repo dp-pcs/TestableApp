@@ -1,0 +1,36 @@
+version: 1
+applications:
+  - appRoot: .
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+    test:
+      phases:
+        preTest:
+          commands:
+            - npm ci
+            - npm install -g serve
+        test:
+          commands:
+            - npm run build
+            - npx serve -s dist -p 8080 &
+            - sleep 5
+            - npx cypress install
+            - npx cypress run --headless --browser chrome
+      artifacts:
+        baseDirectory: cypress
+        files:
+          - videos/**/*
+          - screenshots/**/*
