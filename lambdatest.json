@@ -1,0 +1,44 @@
+{
+  "lambdatest_auth": {
+    "username": "LT_USERNAME",
+    "access_key": "LT_ACCESS_KEY"
+  },
+  "browsers": [
+    {
+      "browser": "Chrome",
+      "platform": "Windows 10",
+      "versions": ["latest", "latest-1"]
+    },
+    {
+      "browser": "Firefox", 
+      "platform": "Windows 10",
+      "versions": ["latest"]
+    },
+    {
+      "browser": "Safari",
+      "platform": "macOS Monterey",
+      "versions": ["latest"]
+    },
+    {
+      "browser": "Edge",
+      "platform": "Windows 10", 
+      "versions": ["latest"]
+    }
+  ],
+  "run_settings": {
+    "cypress_config_file": "cypress.lambdatest.config.js",
+    "build_name": "TestableApp AI Testing Research",
+    "project_name": "Traditional vs AI Testing Comparison",
+    "parallels": 2,
+    "specs": "./cypress/e2e/**/*.cy.js",
+    "ignore_files": "",
+    "network": false,
+    "headless": false,
+    "npm_dependencies": {
+      "cypress": "13.6.0"
+    }
+  },
+  "tunnel_settings": {
+    "tunnel": false
+  }
+} 

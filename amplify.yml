@@ -6,9 +6,12 @@ applications:
         preBuild:
           commands:
             - npm ci
+            - echo "Building TestableApp for AI Testing Research"
+            - echo "Target domain: testableapp.latentgenius.ai"
         build:
           commands:
             - npm run build
+            - echo "Build completed for production deployment"
       artifacts:
         baseDirectory: dist
         files:
@@ -22,15 +25,17 @@ applications:
           commands:
             - npm ci
             - npm install -g serve
+            - echo "Setting up test environment for AI testing research"
         test:
           commands:
             - npm run build
             - npx serve -s dist -p 8080 &
             - sleep 5
             - npx cypress install
-            - npx cypress run --headless --browser chrome
+            - npx cypress run --headless --browser chrome --config baseUrl=http://localhost:8080
       artifacts:
         baseDirectory: cypress
         files:
           - videos/**/*
           - screenshots/**/*
+          - reports/**/*

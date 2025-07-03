@@ -1,0 +1,14 @@
+{
+  "domainName": "latentgenius.ai",
+  "subDomains": [
+    {
+      "subDomainSetting": {
+        "prefix": "testableapp",
+        "branchName": "main"
+      }
+    }
+  ],
+  "enableAutoSubDomain": false,
+  "autoSubDomainCreationPatterns": [],
+  "autoSubDomainIAMRole": ""
+}

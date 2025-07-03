@@ -1,0 +1,12 @@
+{
+  "name": "TestableApp",
+  "platform": "WEB",
+  "repository": "https://github.com/davidproctor/TestableApp",
+  "description": "TestableApp - UI Testing Benchmark for AI Testing Research",
+  "environmentVariables": {
+    "NODE_ENV": "production",
+    "AMPLIFY_DIFF_DEPLOY": "false",
+    "AMPLIFY_MONOREPO_APP_ROOT": "."
+  },
+  "buildSpec": "version: 1\napplications:\n  - appRoot: .\n    frontend:\n      phases:\n        preBuild:\n          commands:\n            - npm ci\n            - echo \"Building TestableApp for AI Testing Research\"\n            - echo \"Target domain: testableapp.latentgenius.ai\"\n        build:\n          commands:\n            - npm run build\n            - echo \"Build completed for production deployment\"\n      artifacts:\n        baseDirectory: dist\n        files:\n          - '**/*'\n      cache:\n        paths:\n          - node_modules/**/*\n    test:\n      phases:\n        preTest:\n          commands:\n            - npm ci\n            - npm install -g serve\n            - echo \"Setting up test environment for AI testing research\"\n        test:\n          commands:\n            - npm run build\n            - npx serve -s dist -p 8080 &\n            - sleep 5\n            - npx cypress install\n            - npx cypress run --headless --browser chrome --config baseUrl=http://localhost:8080\n      artifacts:\n        baseDirectory: cypress\n        files:\n          - videos/**/*\n          - screenshots/**/*\n          - reports/**/*"
+}

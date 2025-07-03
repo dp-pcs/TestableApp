@@ -9,8 +9,21 @@
     "preview": "vite preview",
     "test": "cypress open",
     "test:headless": "cypress run",
+    "test:lambdatest": "lambdatest-cypress run",
+    "test:applitools": "cypress run --config-file cypress.config.js --env eyesEnabled=true",
+    "test:visual": "cypress run cypress/e2e/visual/applitools.cy.js",
     "build:analyze": "vite build --mode analyze",
-    "serve": "vite preview --port 3000"
+    "serve": "vite preview --port 3000",
+    "setup:all-tools": "node scripts/setup-all-tools.js all",
+    "setup:lambdatest": "node scripts/setup-lambdatest.js cypress",
+    "setup:applitools": "node scripts/setup-all-tools.js applitools",
+    "inject:bug": "node scripts/inject-bugs.js inject",
+    "restore:bugs": "node scripts/inject-bugs.js restore",
+    "record:scenarios": "node scripts/record-scenarios.js list",
+    "deploy:check": "node scripts/deploy-amplify.js check",
+    "deploy:setup": "node scripts/deploy-amplify.js setup",
+    "deploy:build": "npm run build && echo \"Build ready for deployment\"",
+    "deploy:test": "npm run test:headless && echo \"Tests passed - ready for deployment\""
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -22,6 +35,7 @@
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
     "cypress": "^13.6.0",
+    "lambdatest-cypress-cli": "^3.0.30",
     "vite": "^4.1.0"
   }
 }
