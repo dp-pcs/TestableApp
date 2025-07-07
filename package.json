@@ -10,8 +10,12 @@
     "test": "cypress open",
     "test:headless": "cypress run",
     "test:lambdatest": "lambdatest-cypress run",
-    "test:applitools": "cypress run --config-file cypress.config.js --env eyesEnabled=true",
-    "test:visual": "cypress run cypress/e2e/visual/applitools.cy.js",
+    "test:applitools": "cypress run --spec cypress/e2e/visual-comparison.cy.js --config-file cypress.applitools.config.cjs",
+    "test:visual": "cypress run --spec cypress/e2e/visual-comparison.cy.js --config-file cypress.applitools.config.cjs",
+    "test:visual-demo": "cypress run --spec cypress/e2e/visual-comparison.cy.js --config-file cypress.applitools.config.cjs --headed",
+    "test:traditional": "cypress run --spec cypress/e2e/auth.cy.js,cypress/e2e/shopping.cy.js,cypress/e2e/ui-interactions.cy.js",
+    "test:comparison": "npm run test:traditional && npm run test:visual",
+    "validate:visual": "node scripts/validate-visual-setup.js",
     "build:analyze": "vite build --mode analyze",
     "serve": "vite preview --port 3000",
     "setup:all-tools": "node scripts/setup-all-tools.js all",
@@ -31,10 +35,12 @@
     "react-router-dom": "^6.8.0"
   },
   "devDependencies": {
+    "@applitools/eyes-cypress": "^3.52.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
     "cypress": "^13.6.0",
+    "dotenv": "^17.0.1",
     "lambdatest-cypress-cli": "^3.0.30",
     "vite": "^4.1.0"
   }

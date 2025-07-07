@@ -1,6 +1,6 @@
-const { defineConfig } = require('cypress')
+import { defineConfig } from 'cypress'
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     baseUrl: 'https://testableapp.latentgenius.ai', // Your deployed app URL
     supportFile: 'cypress/support/e2e.js',

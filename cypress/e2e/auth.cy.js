@@ -26,10 +26,13 @@ describe('Authentication Flow', () => {
     it('should show validation error for invalid email', () => {
       cy.visit('/login')
       cy.get('[data-testid="email-input"]').type('invalid-email')
-      cy.get('[data-testid="password-input"]').type('password123')
+      cy.wait(100)
       cy.get('[data-testid="login-submit"]').click()
       
+      cy.wait(500)
+      
       cy.get('[data-testid="email-error"]').should('contain', 'Please enter a valid email address')
+      cy.get('[data-testid="password-error"]').should('contain', 'Password is required')
     })
 
     it('should show validation error for short password', () => {
@@ -97,11 +100,11 @@ describe('Authentication Flow', () => {
       cy.get('[data-testid="firstName-input"]').type('John')
       cy.get('[data-testid="lastName-input"]').type('Doe')
       cy.get('[data-testid="email-input"]').type('john@example.com')
-      cy.get('[data-testid="password-input"]').type('weak')
-      cy.get('[data-testid="confirmPassword-input"]').type('weak')
+      cy.get('[data-testid="password-input"]').type('weakpassword')
+      cy.get('[data-testid="confirmPassword-input"]').type('weakpassword')
       cy.get('[data-testid="register-submit"]').click()
       
-      cy.get('[data-testid="password-error"]').should('contain', 'Password must contain at least one uppercase letter')
+      cy.get('[data-testid="password-error"]').should('contain', 'Password must contain at least one uppercase letter, one lowercase letter, and one number')
     })
 
     it('should validate password confirmation match', () => {

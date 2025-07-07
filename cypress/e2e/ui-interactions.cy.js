@@ -107,7 +107,7 @@ describe('UI Interactions and Theme Toggle', () => {
       cy.get('[data-testid="cart-title"]').should('be.visible')
       
       // Test login navigation
-      cy.get('[data-testid="login-link"]').click()
+      cy.get('[data-testid="nav-login-link"]').click()
       cy.url().should('include', '/login')
       cy.get('[data-testid="login-title"]').should('be.visible')
     })
@@ -187,7 +187,7 @@ describe('UI Interactions and Theme Toggle', () => {
       cy.focused().should('have.attr', 'data-testid', 'cart-link')
       
       cy.focused().tab()
-      cy.focused().should('have.attr', 'data-testid', 'login-link')
+      cy.focused().should('have.attr', 'data-testid', 'nav-login-link')
       
       cy.focused().tab()
       cy.focused().should('have.attr', 'data-testid', 'theme-toggle')

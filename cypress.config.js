@@ -1,6 +1,6 @@
-const { defineConfig } = require('cypress')
+import { defineConfig } from 'cypress'
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     baseUrl: 'http://localhost:3000',
     supportFile: 'cypress/support/e2e.js',
@@ -13,4 +13,10 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
   },
+  env: {
+    // Applitools configuration
+    eyesIsDisabled: false,
+    eyesFailCypressOnDiff: true,
+    eyesTestConcurrency: 1,
+  }
 })

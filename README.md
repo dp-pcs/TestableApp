@@ -5,8 +5,8 @@ A comprehensive web application designed to benchmark traditional UI testing app
 ## 🎯 Project Purpose
 
 This application serves as a controlled environment to compare:
-- **Traditional UI Testing** (Cypress, Playwright, Selenium)
-- **AI-Powered Vision Testing** (GPT-4o Vision, Claude 3.5 Sonnet, Gemini Vision)
+- **Traditional UI Testing** (Cypress)
+- **AI-Powered Vision Testing** (GPT-4o Vision, Claude 3.5 Sonnet, Gemini Vision, Applitools, Functionize)
 
 ## 🏗️ Architecture & Technology Stack
 
@@ -65,7 +65,8 @@ TestableApp/
 │   └── inject-bugs.js       # Bug injection automation
 ├── videos/                  # Test execution recordings
 ├── screenshots/             # Test screenshots
-└── docs/                    # Additional documentation
+└── docs/
+    ├── sample-gpt4o-analysis.json # Example AI analysis output
 ```
 
 ## 🔧 Key Features Implemented
@@ -121,6 +122,20 @@ node scripts/inject-bugs.js restore modal-not-closing
 node scripts/inject-bugs.js restore
 ```
 
+## 🐞 Additional AI-Targeted Bug Types
+
+To enhance the depth of AI vision testing, we are introducing additional bug scenarios that are particularly challenging for DOM-based tools but perceptible to human testers or multimodal AI:
+
+### New Bugs for AI Testing
+
+1. **z-index-modal-hidden**: Modal is rendered but visually hidden behind an overlay.
+2. **button-label-mismatch**: The button text says "Buy Now" but the accessible name is "Submit."
+3. **dark-contrast-text**: Text color is too dark on a dark background (failing accessibility).
+4. **hover-state-missing**: Buttons lack a hover state, making them appear unresponsive.
+5. **image-load-failure**: Key product images silently fail to load, degrading visual UX.
+6. **scroll-lock-failure**: Modal opens, but background page remains scrollable.
+
+These will be added under `/bugs/` with paired `.buggy.jsx` or `.buggy.css` files and integrated into the injection script for toggling.
 ## 🧪 Testing Approach
 
 ### Traditional Testing (Cypress)
@@ -159,6 +174,43 @@ npm run test:headless
 - "Compare this shopping cart total with the individual item prices. Is the calculation correct?"
 - "Does the modal close when the user clicks outside of it?"
 
+See [AI Prompt Templates](#ai-prompt-templates) and [Sample Output](docs/sample-gpt4o-analysis.json) for reference.
+
+### AI Prompt Templates
+
+Use structured prompts to guide AI vision models like GPT-4o or Claude 3.5 in identifying UI issues. Standardizing these prompts helps ensure consistency across test scenarios.
+
+#### 📋 Visual Bug Detection Prompt
+
+> Watch this recording of a user interacting with our web application. Identify any **visual issues** such as misalignment, overlapping elements, contrast problems, or buttons rendered off-screen. Return a JSON response with issues, timestamps, severity, and suggestions.
+
+#### 🔐 Functional Flow Analysis Prompt
+
+> Watch this end-to-end login and checkout flow. Determine if the user successfully completes each step. Note any failures, unclear UI interactions, or bugs that prevent task completion. Output a JSON summary of observed issues.
+
+#### 🧠 Full Interaction Audit Prompt
+
+> You are an expert QA tester. Watch this recording and summarize any visual or functional problems the user encounters. Include timestamps, descriptions, and suggestions in structured JSON format.
+
+#### 🧾 Suggested Output Schema
+
+```json
+[
+  {
+    "issue": "Modal does not close when clicking outside",
+    "timestamp": "00:14",
+    "severity": "high",
+    "suggestion": "Ensure outside click event closes modal"
+  },
+  {
+    "issue": "Cart total does not update after item added",
+    "timestamp": "00:22",
+    "severity": "critical",
+    "suggestion": "Check cart state update function"
+  }
+]
+```
+
 ## 🎬 Video Recording Strategy
 
 ### Recording Scenarios
@@ -172,6 +224,21 @@ npm run test:headless
 - **Frame Rate**: 30fps for smooth interaction capture
 - **Duration**: 30-60 seconds per test scenario
 - **Format**: MP4 with H.264 encoding
+
+## 🎥 AI Video Analysis Samples
+
+### Example Scenario
+- **Test Case**: `cart-calculation-wrong` + `modal-not-closing`
+- **Recording**: `/videos/flow-cart-modal.mp4`
+- **Model Used**: GPT-4o (OpenAI Vision)
+- **Prompt**: Full Interaction Audit Prompt (see above)
+- **AI Output**: [View GPT-4o Output](docs/sample-gpt4o-analysis.json)
+
+### Sample Findings
+| Timestamp | Issue                             | Severity | Suggestion                                 |
+|-----------|-----------------------------------|----------|---------------------------------------------|
+| 00:14     | Modal does not close on outside click | High     | Ensure modal has backdrop click handler     |
+| 00:22     | Cart total is incorrect           | Critical | Check price calculation logic in Cart.jsx   |
 
 ## 📊 Benchmarking Metrics
 
@@ -268,6 +335,38 @@ This project is designed for research and educational purposes. Contributions we
 - New bug injection patterns
 - Alternative AI model integrations
 - Enhanced benchmarking metrics
+
+## 🤖 API-Based AI Submission Script
+
+An upcoming feature of this project is a script to automate the upload and prompt submission to multimodal AI models like GPT-4o and Claude 3.5:
+
+### Planned Capabilities
+- Select `.mp4` video recordings of test scenarios
+- Submit to OpenAI Vision API or Anthropic Claude
+- Apply structured prompts (from `AI Prompt Templates`)
+- Capture and save the AI response to JSON
+- Compare response to ground-truth bug annotations
+
+### Location
+Planned implementation: `scripts/submit-to-ai.js`
+
+Stay tuned as this feature is developed.
+
+## 📝 Publishable Summary Report
+
+This project will generate a final PDF report summarizing test results, tool comparisons, and methodology insights. The report will include:
+
+- Overview of each tool tested (Cypress, GPT-4o, Applitools, Functionize, Claude 3.5, Gemini Vision)
+- Bug detection matrices (per tool, per bug type)
+- Time and effort analysis
+- Observations on test coverage and explainability
+- Visual samples from recordings and AI responses
+
+The PDF will be produced from markdown content in `/docs/report-draft.md` and generated using `md-to-pdf`.
+
+```bash
+npx md-to-pdf docs/report-draft.md
+```
 
 ## 📄 License
 

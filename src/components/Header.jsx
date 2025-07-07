@@ -29,7 +29,7 @@ const Header = () => {
           <Link to="/" className="nav-link" data-testid="home-link">Home</Link>
           <Link to="/shop" className="nav-link" data-testid="shop-link">Shop</Link>
           <Link to="/cart" className="nav-link" data-testid="cart-link">Cart</Link>
-          <Link to="/login" className="nav-link" data-testid="login-link">Login</Link>
+          <Link to="/login" className="nav-link" data-testid="nav-login-link">Login</Link>
           
           <button 
             onClick={toggleTheme} 
