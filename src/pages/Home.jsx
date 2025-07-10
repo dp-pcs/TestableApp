@@ -8,7 +8,37 @@ const Home = () => {
   return (
     <div>
       <h1 data-testid="home-title">Welcome to TestableApp</h1>
-      <p>This is a demo app for testing UI automation approaches.</p>
+      <p>Experience the power of AI-driven visual testing vs traditional manual testing.</p>
+      
+      <div className="hero-demo" style={{
+        background: 'linear-gradient(135deg, #007bff, #28a745)',
+        color: 'white',
+        padding: '2rem',
+        borderRadius: '12px',
+        margin: '2rem 0',
+        textAlign: 'center'
+      }}>
+        <h2 style={{ margin: '0 0 1rem 0', fontSize: '2rem' }}>🎯 Interactive Visual Testing Demo</h2>
+        <p style={{ fontSize: '1.2rem', margin: '0 0 1.5rem 0' }}>
+          See how long it takes you to manually find visual bugs vs AI automation
+        </p>
+        <Link 
+          to="/manual-demo" 
+          className="btn"
+          style={{
+            background: 'white',
+            color: '#007bff',
+            padding: '15px 30px',
+            fontSize: '1.2rem',
+            fontWeight: 'bold',
+            textDecoration: 'none',
+            borderRadius: '8px',
+            display: 'inline-block'
+          }}
+        >
+          🚀 Start Demo Challenge
+        </Link>
+      </div>
       
       <div style={{ margin: '2rem 0', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
         <Link to="/login" className="btn btn-primary" data-testid="get-started-btn">

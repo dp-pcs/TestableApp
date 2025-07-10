@@ -1,0 +1,39 @@
+{
+  "results": [
+    {
+      "page": "Homepage with Purple Title",
+      "time": 1808,
+      "bug": "Purple oversized heading instead of normal styling",
+      "status": "VISUAL_DIFF_DETECTED"
+    },
+    {
+      "page": "Product Catalog with Typo",
+      "time": 1701,
+      "bug": "Spelling error: \"Headphonez\" instead of \"Headphones\"",
+      "status": "VISUAL_DIFF_DETECTED"
+    },
+    {
+      "page": "User Profile with Red Button",
+      "time": 1717,
+      "bug": "Save button is red instead of blue",
+      "status": "VISUAL_DIFF_DETECTED"
+    },
+    {
+      "page": "Contact Form Misaligned",
+      "time": 1724,
+      "bug": "Submit button shifted right, not aligned",
+      "status": "VISUAL_DIFF_DETECTED"
+    },
+    {
+      "page": "Support Page Wrong Email",
+      "time": 1726,
+      "bug": "Email shows test@example.com instead of support@company.com",
+      "status": "VISUAL_DIFF_DETECTED"
+    }
+  ],
+  "totalTime": 13079,
+  "completedAt": "2025-07-07T20:29:56.567Z",
+  "applitoolsUrl": "https://eyes.applitools.com/app/batches/00000251650380612345/00000251650380612167?accountId=yTcPOgf_I0OWskIZakNiVQ__",
+  "batchId": "00000251650380612345",
+  "averageTimePerPage": 2616
+}

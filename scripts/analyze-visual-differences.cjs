@@ -1,0 +1,183 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+// Analysis of all visual differences between baseline and broken pages
+const visualDifferences = [
+  {
+    id: 1,
+    element: 'TechCorp Solutions (Header Logo Text)',
+    location: 'Top navigation, main logo',
+    change: 'Color: white (#ffffff) → red (#ff0000)',
+    explanation: 'Complete RGB color change affects every pixel of the text',
+    visibility: 'OBVIOUS - Easy to spot',
+    pixelImpact: 'High - Every letter pixel changes color',
+    cssChange: 'color: white; → color: red;'
+  },
+  {
+    id: 2,
+    element: 'Innovation Meets Excellence (Main Subtitle)',
+    location: 'Hero section, below main title',
+    change: 'Position: margin-left: 0px → margin-left: 15px',
+    explanation: 'Text baseline shift affects font anti-aliasing on every character edge',
+    visibility: 'SUBTLE - Hard to notice without side-by-side comparison',
+    pixelImpact: 'Medium - Anti-aliasing creates different pixel patterns',
+    cssChange: 'margin-left: 0; → margin-left: 15px;'
+  },
+  {
+    id: 3,
+    element: 'Core Services Grid Cards (First 3)',
+    location: 'Services section, card shadows',
+    change: 'Missing: box-shadow: 0 2px 4px rgba(0,0,0,0.1)',
+    explanation: 'Missing shadows affect pixels around card edges and create different layering',
+    visibility: 'MODERATE - Noticeable if you look for depth',
+    pixelImpact: 'Medium - Shadow pixels around entire card perimeter',
+    cssChange: 'box-shadow: 0 2px 4px rgba(0,0,0,0.1); → box-shadow: none;'
+  },
+  {
+    id: 4,
+    element: 'CTA Button Shape',
+    location: 'Hero section, "Get Started" button',
+    change: 'Border-radius: 50px → 5px',
+    explanation: 'Different corner rounding creates completely different edge pixels',
+    visibility: 'OBVIOUS - Rounded vs square corners',
+    pixelImpact: 'High - Corner pixels completely different shape',
+    cssChange: 'border-radius: 50px; → border-radius: 5px;'
+  },
+  {
+    id: 5,
+    element: 'CTA Button Position',
+    location: 'Hero section, "Get Started" button',
+    change: 'Position: margin-left: 0px → margin-left: 30px',
+    explanation: 'Button repositioning affects button pixels and background pixels behind it',
+    visibility: 'OBVIOUS - Button clearly moved right',
+    pixelImpact: 'High - Both button and background pixels change',
+    cssChange: 'margin-left: 0; → margin-left: 30px;'
+  },
+  {
+    id: 6,
+    element: 'Cybersecurity Service Title',
+    location: 'Services grid, "Cybersecurity" card',
+    change: 'Font-size: 1.25rem → 1.1rem',
+    explanation: 'Smaller font creates different character shapes and spacing',
+    visibility: 'SUBTLE - Requires careful inspection',
+    pixelImpact: 'Medium - Character rendering affects multiple pixels per letter',
+    cssChange: 'font-size: 1.25rem; → font-size: 1.1rem;'
+  },
+  {
+    id: 7,
+    element: 'Data Analytics Service Title',
+    location: 'Services grid, "Data Analytics" card',
+    change: 'Font-size: 1.25rem → 1.4rem',
+    explanation: 'Larger font creates different character shapes and spacing',
+    visibility: 'SUBTLE - Requires careful inspection',
+    pixelImpact: 'Medium - Character rendering affects multiple pixels per letter',
+    cssChange: 'font-size: 1.25rem; → font-size: 1.4rem;'
+  },
+  {
+    id: 8,
+    element: 'Statistics Section Labels',
+    location: 'Stats section, labels under numbers',
+    change: 'Opacity: 0.9 → 0.3',
+    explanation: 'Lower opacity creates much lighter text, affecting all text pixels',
+    visibility: 'MODERATE - Text appears much fainter',
+    pixelImpact: 'High - Every text pixel becomes much lighter',
+    cssChange: 'opacity: 0.9; → opacity: 0.3;'
+  },
+  {
+    id: 9,
+    element: 'Team Section Background',
+    location: 'Team section background area',
+    change: 'Background-color: #f8f9fa → #f0f0f0',
+    explanation: 'Slight background color change affects large area of pixels',
+    visibility: 'VERY SUBTLE - Almost imperceptible',
+    pixelImpact: 'Very High - Entire section background affected',
+    cssChange: 'background-color: #f8f9fa; → background-color: #f0f0f0;'
+  },
+  {
+    id: 10,
+    element: 'Contact Form Submit Button',
+    location: 'Contact section, form button',
+    change: 'Position: margin-top: 20px → margin-top: -10px',
+    explanation: 'Button overlap creates pixel conflicts with form field above',
+    visibility: 'OBVIOUS - Button clearly overlapping input field',
+    pixelImpact: 'High - Overlapping elements create visual conflicts',
+    cssChange: 'margin-top: 20px; → margin-top: -10px;'
+  }
+];
+
+function analyzeVisualDifferences() {
+  console.log('🔍 COMPREHENSIVE VISUAL DIFFERENCE ANALYSIS\n');
+  console.log('==========================================\n');
+  
+  console.log(`📊 TOTAL DIFFERENCES DETECTED: ${visualDifferences.length}\n`);
+  
+  // Group by visibility level
+  const obvious = visualDifferences.filter(d => d.visibility.startsWith('OBVIOUS'));
+  const moderate = visualDifferences.filter(d => d.visibility.startsWith('MODERATE'));
+  const subtle = visualDifferences.filter(d => d.visibility.startsWith('SUBTLE'));
+  const verySubtle = visualDifferences.filter(d => d.visibility.startsWith('VERY SUBTLE'));
+  
+  console.log('📈 VISIBILITY BREAKDOWN:');
+  console.log(`   🔴 OBVIOUS (Easy to spot): ${obvious.length} differences`);
+  console.log(`   🟡 MODERATE (Noticeable): ${moderate.length} differences`);
+  console.log(`   🟠 SUBTLE (Requires inspection): ${subtle.length} differences`);
+  console.log(`   ⚪ VERY SUBTLE (Almost imperceptible): ${verySubtle.length} differences\n`);
+  
+  console.log('🎯 WHY EACH DIFFERENCE WAS HIGHLIGHTED:\n');
+  
+  visualDifferences.forEach((diff, index) => {
+    console.log(`${index + 1}. ${diff.element}`);
+    console.log(`   📍 Location: ${diff.location}`);
+    console.log(`   🔄 Change: ${diff.change}`);
+    console.log(`   👁️  Visibility: ${diff.visibility}`);
+    console.log(`   🎨 CSS: ${diff.cssChange}`);
+    console.log(`   🔬 Why highlighted: ${diff.explanation}`);
+    console.log(`   📊 Pixel impact: ${diff.pixelImpact}\n`);
+  });
+  
+  console.log('💡 KEY INSIGHTS:\n');
+  console.log('🎯 APPLITOOLS SENSITIVITY EXPLAINED:');
+  console.log('   • Pixel-Perfect Detection: Catches 1-pixel differences');
+  console.log('   • Anti-aliasing Aware: Font rendering edge differences');
+  console.log('   • Color Precision: RGB value differences matter');
+  console.log('   • Position Sensitive: 1px movement affects rendering');
+  console.log('   • Shadow Detection: Missing effects create edge differences\n');
+  
+  console.log('🔧 TUNING OPTIONS:');
+  console.log('   • Strict Mode: Current setting - catches everything');
+  console.log('   • Content Mode: Ignores minor visual changes');
+  console.log('   • Layout Mode: Only structural changes matter');
+  console.log('   • Exact Mode: Perfect pixel matching\n');
+  
+  console.log('🎪 DEMO VALUE:');
+  console.log('   • Shows AI catches what humans miss');
+  console.log('   • Demonstrates pixel-level precision');
+  console.log('   • Proves value of automated visual testing');
+  console.log('   • Highlights need for visual regression protection\n');
+  
+  // Save analysis to file
+  const analysisData = {
+    totalDifferences: visualDifferences.length,
+    visibilityBreakdown: {
+      obvious: obvious.length,
+      moderate: moderate.length,
+      subtle: subtle.length,
+      verySubtle: verySubtle.length
+    },
+    differences: visualDifferences,
+    generatedAt: new Date().toISOString()
+  };
+  
+  const outputPath = path.join(__dirname, '..', 'public', 'visual-analysis.json');
+  fs.writeFileSync(outputPath, JSON.stringify(analysisData, null, 2));
+  console.log(`💾 Detailed analysis saved to: ${outputPath}`);
+}
+
+// Run if called directly
+if (require.main === module) {
+  analyzeVisualDifferences();
+}
+
+module.exports = { analyzeVisualDifferences, visualDifferences }; 

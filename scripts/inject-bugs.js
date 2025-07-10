@@ -45,6 +45,42 @@ const bugs = [
         target: 'src/index.css'
       }
     ]
+  },
+  {
+    name: 'demo-visual-chaos',
+    description: 'DEMO: Super obvious visual issues - red buttons, rotated cards, huge purple title',
+    files: [
+      {
+        source: 'bugs/index.demo-bug.css',
+        target: 'src/index.css'
+      }
+    ]
+  },
+  {
+    name: 'applitools-demo-bugs',
+    description: 'Real bugs for Applitools demo - typos, wrong colors, misalignment',
+    files: [
+      {
+        source: 'bugs/Home.buggy.jsx',
+        target: 'src/pages/Home.jsx'
+      },
+      {
+        source: 'bugs/Shop.buggy.jsx',
+        target: 'src/pages/Shop.jsx'
+      },
+      {
+        source: 'bugs/Profile.buggy.jsx',
+        target: 'src/pages/Profile.jsx'
+      },
+      {
+        source: 'bugs/Contact.buggy.jsx',
+        target: 'src/pages/Contact.jsx'
+      },
+      {
+        source: 'bugs/Support.buggy.jsx',
+        target: 'src/pages/Support.jsx'
+      }
+    ]
   }
 ]
 

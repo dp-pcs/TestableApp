@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "testResults": [
+    {
+      "page": "Baseline Page",
+      "time": 2815,
+      "status": "BASELINE_CAPTURED",
+      "issues": 0
+    },
+    {
+      "page": "Broken Page",
+      "time": 2653,
+      "status": "BUGS_DETECTED",
+      "issues": 10
+    }
+  ],
+  "totalTime": 10722,
+  "completedAt": "2025-07-09T20:34:29.949Z",
+  "applitoolsUrl": "https://eyes.applitools.com/app/batches/00000251650207534950/00000251650207534766?accountId=yTcPOgf_I0OWskIZakNiVQ__",
+  "batchId": "00000251650207534950",
+  "bugsDetected": 10,
+  "testType": "Static Page Visual Comparison"
+}

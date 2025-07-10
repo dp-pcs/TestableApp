@@ -6,36 +6,134 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme()
 
   return (
-    <header style={{
-      background: theme === 'dark' ? '#2a2a2a' : '#f8f9fa',
+    <header style={{ 
+      backgroundColor: theme === 'dark' ? '#1a1a1a' : '#ffffff',
+      borderBottom: `1px solid ${theme === 'dark' ? '#333' : '#e0e0e0'}`,
       padding: '1rem 0',
-      borderBottom: '1px solid #ddd'
+      position: 'sticky',
+      top: 0,
+      zIndex: 1000,
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
     }}>
-      <div className="container" style={{
+      <div className="container" style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        padding: '0 1rem',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <Link to="/" style={{
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          textDecoration: 'none',
-          color: theme === 'dark' ? '#fff' : '#333'
-        }}>
-          TestableApp
-        </Link>
+        <div className="logo-section" style={{ display: 'flex', alignItems: 'center' }}>
+          <Link to="/" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            textDecoration: 'none',
+            color: 'inherit'
+          }}>
+            <img 
+              src="/testableapp_logo_transparent.png" 
+              alt="TestableApp Logo" 
+              style={{ 
+                height: '120px', 
+                width: 'auto'
+              }}
+            />
+          </Link>
+        </div>
         
-        <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <Link to="/" className="nav-link" data-testid="home-link">Home</Link>
-          <Link to="/shop" className="nav-link" data-testid="shop-link">Shop</Link>
-          <Link to="/cart" className="nav-link" data-testid="cart-link">Cart</Link>
-          <Link to="/login" className="nav-link" data-testid="nav-login-link">Login</Link>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+          <div className="nav-links" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            <Link 
+              to="/" 
+              style={{ 
+                color: theme === 'dark' ? '#ffffff' : '#333333',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.target.style.color = '#007bff'}
+              onMouseLeave={(e) => e.target.style.color = theme === 'dark' ? '#ffffff' : '#333333'}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/demo-control" 
+              style={{ 
+                color: theme === 'dark' ? '#ffffff' : '#333333',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.target.style.color = '#007bff'}
+              onMouseLeave={(e) => e.target.style.color = theme === 'dark' ? '#ffffff' : '#333333'}
+            >
+              🎛️ Demo Control
+            </Link>
+            <Link 
+              to="/shop" 
+              style={{ 
+                color: theme === 'dark' ? '#ffffff' : '#333333',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.target.style.color = '#007bff'}
+              onMouseLeave={(e) => e.target.style.color = theme === 'dark' ? '#ffffff' : '#333333'}
+            >
+              Shop
+            </Link>
+            <Link 
+              to="/cart" 
+              style={{ 
+                color: theme === 'dark' ? '#ffffff' : '#333333',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.target.style.color = '#007bff'}
+              onMouseLeave={(e) => e.target.style.color = theme === 'dark' ? '#ffffff' : '#333333'}
+            >
+              Cart
+            </Link>
+            <Link 
+              to="/login" 
+              style={{ 
+                color: theme === 'dark' ? '#ffffff' : '#333333',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.target.style.color = '#007bff'}
+              onMouseLeave={(e) => e.target.style.color = theme === 'dark' ? '#ffffff' : '#333333'}
+            >
+              Login
+            </Link>
+          </div>
           
-          <button 
-            onClick={toggleTheme} 
-            className="btn btn-secondary"
-            data-testid="theme-toggle"
-            aria-label="Toggle theme"
+          <button
+            onClick={toggleTheme}
+            data-testid="theme-toggle-icon"
+            style={{
+              background: 'none',
+              border: `2px solid ${theme === 'dark' ? '#ffffff' : '#333333'}`,
+              borderRadius: '50%',
+              width: '40px',
+              height: '40px',
+              cursor: 'pointer',
+              fontSize: '1.2rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = theme === 'dark' ? '#ffffff' : '#333333'
+              e.target.style.color = theme === 'dark' ? '#333333' : '#ffffff'
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent'
+              e.target.style.color = theme === 'dark' ? '#ffffff' : '#333333'
+            }}
           >
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
