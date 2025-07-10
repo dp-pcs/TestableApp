@@ -1,0 +1,38 @@
+{
+  "microsoft/git-base-coco": {
+    "name": "Microsoft GIT-Base",
+    "task": "image-to-text",
+    "results": {
+      "baseline": {
+        "error": "Not Found"
+      }
+    }
+  },
+  "Salesforce/blip-image-captioning-base": {
+    "name": "BLIP Image Captioning",
+    "task": "image-to-text",
+    "results": {
+      "baseline": {
+        "error": "Not Found"
+      }
+    }
+  },
+  "Salesforce/blip-vqa-base": {
+    "name": "BLIP Visual QA",
+    "task": "visual-question-answering",
+    "results": {
+      "baseline": {
+        "error": "Not Found"
+      }
+    }
+  },
+  "nlpconnect/vit-gpt2-image-captioning": {
+    "name": "ViT-GPT2 Captioning",
+    "task": "image-to-text",
+    "results": {
+      "baseline": {
+        "error": "Not Found"
+      }
+    }
+  }
+}

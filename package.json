@@ -66,7 +66,18 @@
     "demo:browser-specific": "echo '🌐 Browser-Specific Bug Demo' && echo 'Testing CSS Grid differences across browsers...' && npm run ai:visual-test",
     "compare:ai-vs-applitools": "echo '⚔️  ULTIMATE COMPARISON: AI Vision vs Applitools' && echo '\\n📊 Check: http://localhost:3000/ai-visual-results/ai-visual-report.html' && npm run ai:demo",
     "demo:ultimate-ai": "node scripts/ultimate-ai-demo.cjs",
-    "demo:revolution": "echo '🚀 THE AI VISUAL TESTING REVOLUTION' && echo 'This demo proves that advanced visual testing is now accessible to everyone!' && npm run demo:ultimate-ai"
+    "demo:revolution": "echo '🚀 THE AI VISUAL TESTING REVOLUTION' && echo 'This demo proves that advanced visual testing is now accessible to everyone!' && npm run demo:ultimate-ai",
+    "ai-accuracy": "node scripts/ai-accuracy-analysis.cjs",
+    "hercules-concept": "node scripts/hercules-integration-concept.cjs",
+    "open-source-vision": "node scripts/open-source-vision-testing.cjs",
+    "comprehensive-ai-study": "npm run ai-accuracy && npm run hercules-concept && npm run open-source-vision",
+    "test-open-source": "node scripts/test-open-source-models.cjs",
+    "test-ollama": "node scripts/test-open-source-models.cjs --ollama-only",
+    "test-huggingface": "node scripts/test-open-source-models.cjs --hf-only",
+    "compare-all-models": "npm run ai:demo && npm run test-open-source",
+    "diagnose-huggingface": "node scripts/fix-huggingface-models.cjs",
+    "setup-ollama": "bash scripts/setup-ollama.sh",
+    "test-working-hf": "node scripts/test-working-hf-models.cjs"
   },
   "dependencies": {
     "express": "^4.21.2",
