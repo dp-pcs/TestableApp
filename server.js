@@ -28,6 +28,15 @@ app.use(express.static(path.join(__dirname, 'dist')))
 // Serve AI visual testing results
 app.use('/ai-visual-results', express.static(path.join(__dirname, 'ai-visual-results')))
 
+// Serve Percy accuracy results
+app.use('/percy-accuracy-results', express.static(path.join(__dirname, 'percy-accuracy-results')))
+
+// Serve Percy API results  
+app.use('/percy-api-results', express.static(path.join(__dirname, 'percy-api-results')))
+
+// Serve Percy final accuracy results
+app.use('/percy-final-accuracy', express.static(path.join(__dirname, 'percy-final-accuracy')))
+
 // API endpoint to run Applitools Selenium test
 app.post('/api/run-applitools-test', async (req, res) => {
   console.log('🚀 API called: Running Applitools Selenium test...')
@@ -225,11 +234,11 @@ app.get('/api/health', (req, res) => {
 })
 
 // Catch all handler: send back React's index.html file for any non-api routes
-// BUT exclude ai-visual-results paths
+// BUT exclude ai-visual-results, percy-accuracy-results, percy-api-results, and percy-final-accuracy paths
 app.get('*', (req, res) => {
-  // Don't serve React app for AI visual results
-  if (req.path.startsWith('/ai-visual-results')) {
-    return res.status(404).send('AI visual results file not found')
+  // Don't serve React app for AI visual results, Percy accuracy results, Percy API results, or Percy final accuracy
+  if (req.path.startsWith('/ai-visual-results') || req.path.startsWith('/percy-accuracy-results') || req.path.startsWith('/percy-api-results') || req.path.startsWith('/percy-final-accuracy')) {
+    return res.status(404).send('Static file not found')
   }
   res.sendFile(path.join(__dirname, 'dist', 'index.html'))
 })

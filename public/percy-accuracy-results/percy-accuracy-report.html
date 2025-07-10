@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Percy Accuracy Analysis Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { background: #663399; color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .bug-list { display: grid; gap: 10px; }
+        .bug-item { padding: 10px; border-left: 4px solid #007bff; background: #f8f9fa; }
+        .bug-major { border-left-color: #dc3545; }
+        .bug-minor { border-left-color: #ffc107; }
+        .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .metric { text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px; }
+        .detection-high { background: #d4edda; }
+        .detection-medium { background: #fff3cd; }
+        .detection-low { background: #f8d7da; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .comparison-table th { background: #f8f9fa; }
+        .percy-strength { background: #e7f3ff; }
+        .ai-strength { background: #fff5ee; }
+        code { background: #f8f9fa; padding: 2px 4px; border-radius: 3px; }
+        .recommendation { margin: 10px 0; padding: 10px; background: #e7f3ff; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 Percy Visual Testing Accuracy Analysis</h1>
+        <p>Comprehensive analysis of Percy's detection capabilities vs known injected bugs</p>
+        <p><strong>Percy Build:</strong> <a href="https://percy.io/27df0096/web/TestableApp-c7f9047d/builds/41476777" target="_blank" style="color: #87CEEB;">View in Percy Dashboard</a></p>
+    </div>
+
+    <div class="section">
+        <h2>📊 Known Bugs vs Expected Detection</h2>
+        <div class="bug-list">
+            
+                <div class="bug-item bug-major">
+                    <h4>TechCorp Solutions header logo color changed from white to red</h4>
+                    <p><strong>Location:</strong> <code>Header Logo Text</code></p>
+                    <p><strong>Change:</strong> color: white (#ffffff) → red (#ff0000)</p>
+                    <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> color-change</p>
+                    <p><strong>Visibility:</strong> OBVIOUS - Easy to spot</p>
+                    <p><strong>Expected Detection:</strong> 
+                        High - Color changes are Percy's strength
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-major">
+                    <h4>Homepage title oversized and purple with underline</h4>
+                    <p><strong>Location:</strong> <code>Home page H1</code></p>
+                    <p><strong>Change:</strong> fontSize: 4rem, color: #9932cc, textDecoration: underline</p>
+                    <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> style-change</p>
+                    <p><strong>Visibility:</strong> OBVIOUS - Huge purple title</p>
+                    <p><strong>Expected Detection:</strong> 
+                        High - Major visual change
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-minor">
+                    <h4>Innovation Meets Excellence subtitle margin shift</h4>
+                    <p><strong>Location:</strong> <code>Hero section subtitle</code></p>
+                    <p><strong>Change:</strong> margin-left: 0px → 15px</p>
+                    <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> layout-shift</p>
+                    <p><strong>Visibility:</strong> SUBTLE - Hard to notice without side-by-side</p>
+                    <p><strong>Expected Detection:</strong> 
+                        Medium - Layout shifts visible but subtle
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-minor">
+                    <h4>Missing box-shadow on first 3 Core Services cards</h4>
+                    <p><strong>Location:</strong> <code>Services section cards</code></p>
+                    <p><strong>Change:</strong> box-shadow: 0 2px 4px rgba(0,0,0,0.1) → none</p>
+                    <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> missing-effect</p>
+                    <p><strong>Visibility:</strong> MODERATE - Noticeable depth difference</p>
+                    <p><strong>Expected Detection:</strong> 
+                        Medium - Shadow differences are detectable
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-minor">
+                    <h4>CTA Button border-radius from rounded to square</h4>
+                    <p><strong>Location:</strong> <code>Hero section Get Started button</code></p>
+                    <p><strong>Change:</strong> border-radius: 50px → 5px</p>
+                    <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> style-change</p>
+                    <p><strong>Visibility:</strong> OBVIOUS - Rounded vs square corners</p>
+                    <p><strong>Expected Detection:</strong> 
+                        High - Shape changes are obvious
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-minor">
+                    <h4>CTA Button shifted 30px to the right</h4>
+                    <p><strong>Location:</strong> <code>Hero section Get Started button</code></p>
+                    <p><strong>Change:</strong> margin-left: 0px → 30px</p>
+                    <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> layout-shift</p>
+                    <p><strong>Visibility:</strong> OBVIOUS - Button clearly moved</p>
+                    <p><strong>Expected Detection:</strong> 
+                        High - Position changes are visible
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-minor">
+                    <h4>Service titles have inconsistent font sizes</h4>
+                    <p><strong>Location:</strong> <code>Cybersecurity and Data Analytics titles</code></p>
+                    <p><strong>Change:</strong> Cybersecurity: 1.25rem → 1.1rem, Data Analytics: 1.25rem → 1.4rem</p>
+                    <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> typography</p>
+                    <p><strong>Visibility:</strong> SUBTLE - Requires careful inspection</p>
+                    <p><strong>Expected Detection:</strong> 
+                        Low - Font size differences are subtle
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-minor">
+                    <h4>Statistics section labels much fainter</h4>
+                    <p><strong>Location:</strong> <code>Stats section label text</code></p>
+                    <p><strong>Change:</strong> opacity: 0.9 → 0.3</p>
+                    <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> visual-effect</p>
+                    <p><strong>Visibility:</strong> MODERATE - Text appears much fainter</p>
+                    <p><strong>Expected Detection:</strong> 
+                        Medium - Opacity changes are visible
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-minor">
+                    <h4>Team section background color slightly changed</h4>
+                    <p><strong>Location:</strong> <code>Team section background</code></p>
+                    <p><strong>Change:</strong> background-color: #f8f9fa → #f0f0f0</p>
+                    <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> color-change</p>
+                    <p><strong>Visibility:</strong> VERY SUBTLE - Almost imperceptible</p>
+                    <p><strong>Expected Detection:</strong> 
+                        Low - Very subtle color differences
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-major">
+                    <h4>Contact form submit button overlapping input field</h4>
+                    <p><strong>Location:</strong> <code>Contact form submit button</code></p>
+                    <p><strong>Change:</strong> margin-top: 20px → -10px (overlapping)</p>
+                    <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> layout-overlap</p>
+                    <p><strong>Visibility:</strong> OBVIOUS - Button clearly overlapping</p>
+                    <p><strong>Expected Detection:</strong> 
+                        High - Overlapping elements are obvious
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-major">
+                    <h4>Modal overlay has gaps at top and left (from CSS bug)</h4>
+                    <p><strong>Location:</strong> <code>Modal overlay positioning</code></p>
+                    <p><strong>Change:</strong> top: 0, left: 0 → top: 50px, left: 50px</p>
+                    <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> layout-bug</p>
+                    <p><strong>Visibility:</strong> OBVIOUS - Clear gaps in overlay</p>
+                    <p><strong>Expected Detection:</strong> 
+                        High - Layout bugs are very visible
+                    </p>
+                </div>
+            
+                <div class="bug-item bug-major">
+                    <h4>All cards shifted 50px to the right (CSS bug)</h4>
+                    <p><strong>Location:</strong> <code>All card elements</code></p>
+                    <p><strong>Change:</strong> margin-left: 0 → 50px</p>
+                    <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> layout-bug</p>
+                    <p><strong>Visibility:</strong> OBVIOUS - All cards clearly misaligned</p>
+                    <p><strong>Expected Detection:</strong> 
+                        High - Major layout shifts are obvious
+                    </p>
+                </div>
+            
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📈 Accuracy Metrics</h2>
+        <div class="metrics">
+            <div class="metric">
+                <h3>Total Bugs Injected</h3>
+                <p><strong>12</strong></p>
+            </div>
+            <div class="metric">
+                <h3>Major Layout Bugs</h3>
+                <p><strong>5</strong></p>
+                <small>High detection probability</small>
+            </div>
+            <div class="metric">
+                <h3>Minor Visual Bugs</h3>
+                <p><strong>7</strong></p>
+                <small>Medium detection probability</small>
+            </div>
+            <div class="metric">
+                <h3>Estimated Detection Rate</h3>
+                <p><strong>83%</strong></p>
+                <small>Based on Percy's capabilities</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>⚔️ Percy vs AI Vision Comparison</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Percy Strengths</th>
+                    <th>AI Vision Strengths</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Detection Method</strong></td>
+                    <td class="percy-strength">Pixel-perfect diff analysis</td>
+                    <td class="ai-strength">Semantic understanding of changes</td>
+                </tr>
+                <tr>
+                    <td><strong>Accuracy Type</strong></td>
+                    <td class="percy-strength">Exact visual precision</td>
+                    <td class="ai-strength">Contextual significance</td>
+                </tr>
+                <tr>
+                    <td><strong>Output Format</strong></td>
+                    <td class="percy-strength">Visual diffs and highlights</td>
+                    <td class="ai-strength">Natural language descriptions</td>
+                </tr>
+                <tr>
+                    <td><strong>Workflow</strong></td>
+                    <td class="percy-strength">Baseline → Compare → Approve</td>
+                    <td class="ai-strength">Direct analysis, no setup</td>
+                </tr>
+                <tr>
+                    <td><strong>Best For</strong></td>
+                    <td class="percy-strength">Regression testing, pixel changes</td>
+                    <td class="ai-strength">Understanding impact, exploration</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🎯 Likely Detection Results</h2>
+        <h3>High Confidence Detections:</h3>
+        <div class="recommendation detection-high">✅ techcorp-logo-color - Color change (white→red) very obvious</div><div class="recommendation detection-high">✅ home-title-purple - Purple oversized title impossible to miss</div><div class="recommendation detection-high">✅ cta-button-shape - Rounded→square border radius obvious</div><div class="recommendation detection-high">✅ cta-button-position - 30px position shift clearly visible</div><div class="recommendation detection-high">✅ contact-button-overlap - Overlapping elements very obvious</div><div class="recommendation detection-high">✅ modal-overlay-gaps - 50px gaps in overlay clearly visible</div><div class="recommendation detection-high">✅ cards-misaligned - 50px card misalignment obvious</div>
+        
+        <h3>Possible Detections:</h3>
+        <div class="recommendation detection-medium">⚠️ missing-card-shadows - Shadow differences create visible depth changes</div><div class="recommendation detection-medium">⚠️ stats-label-opacity - Opacity 0.9→0.3 creates fainter text</div><div class="recommendation detection-medium">⚠️ subtitle-misalignment - 15px margin shift visible with comparison</div>
+    </div>
+
+    <div class="section">
+        <h2>🔧 Recommendations</h2>
+        <h3>Manual Verification Steps:</h3>
+        <ol>
+            <li>📋 <strong>Review Percy Dashboard:</strong> Check each snapshot for visual differences</li>
+            <li>✅ <strong>Mark True Positives:</strong> Confirm detected changes match known bugs</li>
+            <li>❌ <strong>Identify False Negatives:</strong> Note any missed bugs from our list</li>
+            <li>📊 <strong>Calculate Real Accuracy:</strong> (Detected Bugs / Total Bugs) × 100</li>
+            <li>📝 <strong>Document Findings:</strong> Create accuracy report for your study</li>
+        </ol>
+        
+        <h3>Testing Strategy Improvements:</h3>
+        <div class="recommendation">💡 Use Percy for pixel-perfect regression testing</div><div class="recommendation">💡 Combine with AI analysis for semantic understanding</div><div class="recommendation">💡 Establish clean baselines before testing changes</div><div class="recommendation">💡 Focus on major layout and visual changes</div><div class="recommendation">💡 Document detected vs expected issues for continuous improvement</div>
+    </div>
+
+    <div class="section">
+        <h2>🚀 Next Steps</h2>
+        <ol>
+            <li><strong>Review Percy Build:</strong> <a href="https://percy.io/27df0096/web/TestableApp-c7f9047d/builds/41476777" target="_blank">Open Percy Dashboard</a></li>
+            <li><strong>Compare with AI Results:</strong> <a href="http://localhost:3000/ai-visual-results/ai-visual-report.html" target="_blank">Open AI Analysis</a></li>
+            <li><strong>Document Accuracy:</strong> Record which bugs Percy successfully detected</li>
+            <li><strong>Generate Final Report:</strong> Combine Percy + AI findings for comprehensive study</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>📋 Manual Verification Checklist</h2>
+        <p>Use this checklist while reviewing the Percy dashboard:</p>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-0"> 
+                <label for="bug-0"><strong>TechCorp Solutions header logo color changed from white to red</strong> - Check if Percy detected this in <code>Header Logo Text</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-1"> 
+                <label for="bug-1"><strong>Homepage title oversized and purple with underline</strong> - Check if Percy detected this in <code>Home page H1</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-2"> 
+                <label for="bug-2"><strong>Innovation Meets Excellence subtitle margin shift</strong> - Check if Percy detected this in <code>Hero section subtitle</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-3"> 
+                <label for="bug-3"><strong>Missing box-shadow on first 3 Core Services cards</strong> - Check if Percy detected this in <code>Services section cards</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-4"> 
+                <label for="bug-4"><strong>CTA Button border-radius from rounded to square</strong> - Check if Percy detected this in <code>Hero section Get Started button</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-5"> 
+                <label for="bug-5"><strong>CTA Button shifted 30px to the right</strong> - Check if Percy detected this in <code>Hero section Get Started button</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-6"> 
+                <label for="bug-6"><strong>Service titles have inconsistent font sizes</strong> - Check if Percy detected this in <code>Cybersecurity and Data Analytics titles</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-7"> 
+                <label for="bug-7"><strong>Statistics section labels much fainter</strong> - Check if Percy detected this in <code>Stats section label text</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-8"> 
+                <label for="bug-8"><strong>Team section background color slightly changed</strong> - Check if Percy detected this in <code>Team section background</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-9"> 
+                <label for="bug-9"><strong>Contact form submit button overlapping input field</strong> - Check if Percy detected this in <code>Contact form submit button</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-10"> 
+                <label for="bug-10"><strong>Modal overlay has gaps at top and left (from CSS bug)</strong> - Check if Percy detected this in <code>Modal overlay positioning</code></label>
+            </div>
+        
+            <div class="recommendation">
+                <input type="checkbox" id="bug-11"> 
+                <label for="bug-11"><strong>All cards shifted 50px to the right (CSS bug)</strong> - Check if Percy detected this in <code>All card elements</code></label>
+            </div>
+        
+    </div>
+</body>
+</html>

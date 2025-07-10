@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Percy Detection Verification Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { background: #663399; color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        .instructions { background: #e7f3ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .bug-card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin: 15px 0; background: #f8f9fa; }
+        .bug-major { border-left: 4px solid #dc3545; }
+        .bug-minor { border-left: 4px solid #ffc107; }
+        .detection-options { margin: 10px 0; }
+        .detection-options label { display: block; margin: 5px 0; cursor: pointer; }
+        .results { background: #d4edda; padding: 15px; border-radius: 8px; margin-top: 20px; display: none; }
+        .accuracy-metric { text-align: center; padding: 10px; background: white; border-radius: 5px; margin: 5px; display: inline-block; min-width: 150px; }
+        .percy-link { background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 10px 0; }
+        .percy-link:hover { background: #218838; }
+        code { background: #f8f9fa; padding: 2px 4px; border-radius: 3px; }
+        .generate-btn { background: #007bff; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 20px 0; }
+        .generate-btn:hover { background: #0056b3; }
+        .expected { color: #6c757d; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 Percy Detection Verification</h1>
+        <p>Manual verification of Percy's visual regression detection capabilities</p>
+        <a href="https://percy.io/27df0096/web/TestableApp-c7f9047d" target="_blank" class="percy-link">🔗 Open Percy Dashboard</a>
+    </div>
+
+    <div class="instructions">
+        <h3>📋 Instructions:</h3>
+        <ol>
+            <li><strong>Open Percy Dashboard:</strong> Click the link above to view Percy's detected changes</li>
+            <li><strong>Review Each Bug:</strong> For each bug below, check if Percy detected the visual difference</li>
+            <li><strong>Mark Detection Status:</strong> Select whether Percy successfully detected each bug</li>
+            <li><strong>Add Notes:</strong> Document what Percy actually showed vs what we expected</li>
+            <li><strong>Generate Report:</strong> Click the button to calculate accuracy metrics</li>
+        </ol>
+    </div>
+
+    <form id="detectionForm">
+        
+            <div class="bug-card bug-major">
+                <h3>Bug #1: TechCorp Solutions header logo color changed from white to red</h3>
+                <p><strong>Location:</strong> <code>Header Logo Text</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> color-change</p>
+                <p class="expected"><strong>Expected Detection:</strong> High - Color changes are Percy's strength</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_0" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_0" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_0" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_0" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_0" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-major">
+                <h3>Bug #2: Homepage title oversized and purple with underline</h3>
+                <p><strong>Location:</strong> <code>Home page H1 title</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> style-change</p>
+                <p class="expected"><strong>Expected Detection:</strong> High - Major visual change</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_1" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_1" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_1" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_1" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_1" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-minor">
+                <h3>Bug #3: Innovation Meets Excellence subtitle margin shift</h3>
+                <p><strong>Location:</strong> <code>Hero section subtitle</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> layout-shift</p>
+                <p class="expected"><strong>Expected Detection:</strong> Medium - Layout shifts visible but subtle</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_2" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_2" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_2" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_2" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_2" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-minor">
+                <h3>Bug #4: Missing box-shadow on first 3 Core Services cards</h3>
+                <p><strong>Location:</strong> <code>Services section cards</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> missing-effect</p>
+                <p class="expected"><strong>Expected Detection:</strong> Medium - Shadow differences are detectable</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_3" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_3" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_3" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_3" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_3" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-minor">
+                <h3>Bug #5: CTA Button border-radius from rounded to square</h3>
+                <p><strong>Location:</strong> <code>Hero section Get Started button</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> style-change</p>
+                <p class="expected"><strong>Expected Detection:</strong> High - Shape changes are obvious</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_4" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_4" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_4" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_4" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_4" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-minor">
+                <h3>Bug #6: CTA Button shifted 30px to the right</h3>
+                <p><strong>Location:</strong> <code>Hero section Get Started button</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> layout-shift</p>
+                <p class="expected"><strong>Expected Detection:</strong> High - Position changes are visible</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_5" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_5" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_5" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_5" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_5" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-minor">
+                <h3>Bug #7: Service titles have inconsistent font sizes</h3>
+                <p><strong>Location:</strong> <code>Cybersecurity and Data Analytics titles</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> typography</p>
+                <p class="expected"><strong>Expected Detection:</strong> Low - Font size differences are subtle</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_6" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_6" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_6" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_6" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_6" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-minor">
+                <h3>Bug #8: Statistics section labels much fainter</h3>
+                <p><strong>Location:</strong> <code>Stats section label text</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> visual-effect</p>
+                <p class="expected"><strong>Expected Detection:</strong> Medium - Opacity changes are visible</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_7" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_7" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_7" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_7" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_7" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-minor">
+                <h3>Bug #9: Team section background color slightly changed</h3>
+                <p><strong>Location:</strong> <code>Team section background</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MINOR | <strong>Type:</strong> color-change</p>
+                <p class="expected"><strong>Expected Detection:</strong> Low - Very subtle color differences</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_8" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_8" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_8" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_8" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_8" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-major">
+                <h3>Bug #10: Contact form submit button overlapping input field</h3>
+                <p><strong>Location:</strong> <code>Contact form submit button</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> layout-overlap</p>
+                <p class="expected"><strong>Expected Detection:</strong> High - Overlapping elements are obvious</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_9" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_9" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_9" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_9" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_9" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-major">
+                <h3>Bug #11: Modal overlay has gaps at top and left (from CSS bug)</h3>
+                <p><strong>Location:</strong> <code>Modal overlay positioning</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> layout-bug</p>
+                <p class="expected"><strong>Expected Detection:</strong> High - Layout bugs are very visible</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_10" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_10" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_10" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_10" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_10" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+            <div class="bug-card bug-major">
+                <h3>Bug #12: All cards shifted 50px to the right (CSS bug)</h3>
+                <p><strong>Location:</strong> <code>All card elements</code></p>
+                <p><strong>Browsers Affected:</strong> all</p>
+                <p><strong>Severity:</strong> MAJOR | <strong>Type:</strong> layout-bug</p>
+                <p class="expected"><strong>Expected Detection:</strong> High - Major layout shifts are obvious</p>
+                
+                <div class="detection-options">
+                    <strong>Did Percy detect this bug?</strong>
+                    <label>
+                        <input type="radio" name="bug_11" value="detected"> 
+                        ✅ Yes - Percy clearly detected this change
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_11" value="partial"> 
+                        ⚠️ Partially - Percy detected something but unclear if this specific bug
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_11" value="missed"> 
+                        ❌ No - Percy missed this bug completely
+                    </label>
+                    <label>
+                        <input type="radio" name="bug_11" value="unsure"> 
+                        ❓ Unsure - Cannot determine from Percy dashboard
+                    </label>
+                </div>
+                
+                <div>
+                    <label><strong>Notes (what did Percy actually show?):</strong></label>
+                    <textarea name="notes_11" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Describe what Percy detected or missed..."></textarea>
+                </div>
+            </div>
+        
+        
+        <button type="button" class="generate-btn" onclick="generateAccuracyReport()">
+            📊 Generate Accuracy Report
+        </button>
+    </form>
+
+    <div id="results" class="results">
+        <h2>🎯 Percy Accuracy Results</h2>
+        <div id="metrics"></div>
+        <div id="detailed-results"></div>
+    </div>
+
+    <script>
+        function generateAccuracyReport() {
+            const form = document.getElementById('detectionForm');
+            const formData = new FormData(form);
+            
+            const bugs = [{"id":"techcorp-logo-color","description":"TechCorp Solutions header logo color changed from white to red","location":"Header Logo Text","browsers":["all"],"severity":"major","type":"color-change","expectedDetection":"High - Color changes are Percy's strength"},{"id":"home-title-purple","description":"Homepage title oversized and purple with underline","location":"Home page H1 title","browsers":["all"],"severity":"major","type":"style-change","expectedDetection":"High - Major visual change"},{"id":"subtitle-misalignment","description":"Innovation Meets Excellence subtitle margin shift","location":"Hero section subtitle","browsers":["all"],"severity":"minor","type":"layout-shift","expectedDetection":"Medium - Layout shifts visible but subtle"},{"id":"missing-card-shadows","description":"Missing box-shadow on first 3 Core Services cards","location":"Services section cards","browsers":["all"],"severity":"minor","type":"missing-effect","expectedDetection":"Medium - Shadow differences are detectable"},{"id":"cta-button-shape","description":"CTA Button border-radius from rounded to square","location":"Hero section Get Started button","browsers":["all"],"severity":"minor","type":"style-change","expectedDetection":"High - Shape changes are obvious"},{"id":"cta-button-position","description":"CTA Button shifted 30px to the right","location":"Hero section Get Started button","browsers":["all"],"severity":"minor","type":"layout-shift","expectedDetection":"High - Position changes are visible"},{"id":"inconsistent-font-sizes","description":"Service titles have inconsistent font sizes","location":"Cybersecurity and Data Analytics titles","browsers":["all"],"severity":"minor","type":"typography","expectedDetection":"Low - Font size differences are subtle"},{"id":"stats-label-opacity","description":"Statistics section labels much fainter","location":"Stats section label text","browsers":["all"],"severity":"minor","type":"visual-effect","expectedDetection":"Medium - Opacity changes are visible"},{"id":"team-background-color","description":"Team section background color slightly changed","location":"Team section background","browsers":["all"],"severity":"minor","type":"color-change","expectedDetection":"Low - Very subtle color differences"},{"id":"contact-button-overlap","description":"Contact form submit button overlapping input field","location":"Contact form submit button","browsers":["all"],"severity":"major","type":"layout-overlap","expectedDetection":"High - Overlapping elements are obvious"},{"id":"modal-overlay-gaps","description":"Modal overlay has gaps at top and left (from CSS bug)","location":"Modal overlay positioning","browsers":["all"],"severity":"major","type":"layout-bug","expectedDetection":"High - Layout bugs are very visible"},{"id":"cards-misaligned","description":"All cards shifted 50px to the right (CSS bug)","location":"All card elements","browsers":["all"],"severity":"major","type":"layout-bug","expectedDetection":"High - Major layout shifts are obvious"}];
+            let detected = 0;
+            let partial = 0;
+            let missed = 0;
+            let unsure = 0;
+            
+            const detailedResults = [];
+            
+            bugs.forEach((bug, index) => {
+                const detection = formData.get(`bug_${index}`);
+                const notes = formData.get(`notes_${index}`) || 'No notes provided';
+                
+                detailedResults.push({
+                    bug: bug,
+                    detection: detection,
+                    notes: notes
+                });
+                
+                switch(detection) {
+                    case 'detected': detected++; break;
+                    case 'partial': partial++; break;
+                    case 'missed': missed++; break;
+                    case 'unsure': unsure++; break;
+                }
+            });
+            
+            const total = bugs.length;
+            const detectionRate = Math.round((detected / total) * 100);
+            const partialRate = Math.round((partial / total) * 100);
+            const missRate = Math.round((missed / total) * 100);
+            
+            // Show results
+            document.getElementById('results').style.display = 'block';
+            
+            document.getElementById('metrics').innerHTML = `
+                <div class="accuracy-metric">
+                    <h3>Overall Detection Rate</h3>
+                    <p><strong>${detectionRate}%</strong></p>
+                    <small>(${detected}/${total} bugs detected)</small>
+                </div>
+                <div class="accuracy-metric">
+                    <h3>Partial Detections</h3>
+                    <p><strong>${partialRate}%</strong></p>
+                    <small>(${partial}/${total} bugs)</small>
+                </div>
+                <div class="accuracy-metric">
+                    <h3>Missed Bugs</h3>
+                    <p><strong>${missRate}%</strong></p>
+                    <small>(${missed}/${total} bugs)</small>
+                </div>
+                <div class="accuracy-metric">
+                    <h3>Unsure/Unclear</h3>
+                    <p><strong>${Math.round((unsure / total) * 100)}%</strong></p>
+                    <small>(${unsure}/${total} bugs)</small>
+                </div>
+            `;
+            
+            let detailedHtml = '<h3>📋 Detailed Results:</h3>';
+            detailedResults.forEach((result, index) => {
+                const statusEmoji = {
+                    'detected': '✅',
+                    'partial': '⚠️',
+                    'missed': '❌',
+                    'unsure': '❓'
+                };
+                
+                detailedHtml += `
+                    <div style="margin: 10px 0; padding: 10px; border-left: 3px solid #ddd; background: white;">
+                        <strong>${statusEmoji[result.detection] || '❓'} Bug #${index + 1}:</strong> ${result.bug.description}<br>
+                        <strong>Status:</strong> ${result.detection || 'Not answered'}<br>
+                        <strong>Notes:</strong> ${result.notes}
+                    </div>
+                `;
+            });
+            
+            document.getElementById('detailed-results').innerHTML = detailedHtml;
+            
+            // Save results to localStorage
+            localStorage.setItem('percyAccuracyResults', JSON.stringify({
+                timestamp: new Date().toISOString(),
+                metrics: { detected, partial, missed, unsure, total, detectionRate },
+                detailedResults: detailedResults
+            }));
+            
+            alert(`✅ Results Generated!\n\nPercy Detection Rate: ${detectionRate}%\nResults saved and displayed below.`);
+        }
+        
+        // Load saved results if available
+        window.onload = function() {
+            const saved = localStorage.getItem('percyAccuracyResults');
+            if (saved) {
+                const data = JSON.parse(saved);
+                // Could auto-populate form with saved data if needed
+            }
+        };
+    </script>
+</body>
+</html>

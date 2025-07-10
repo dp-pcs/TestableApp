@@ -1,0 +1,235 @@
+{
+  "timestamp": "2025-07-10T13:59:04.406Z",
+  "percyBuildUrl": "https://percy.io/27df0096/web/TestableApp-c7f9047d/builds/41476777",
+  "knownBugs": [
+    {
+      "id": "techcorp-logo-color",
+      "description": "TechCorp Solutions header logo color changed from white to red",
+      "location": "Header Logo Text",
+      "change": "color: white (#ffffff) → red (#ff0000)",
+      "severity": "major",
+      "type": "color-change",
+      "visibility": "OBVIOUS - Easy to spot",
+      "expectedDetection": "High - Color changes are Percy's strength"
+    },
+    {
+      "id": "home-title-purple",
+      "description": "Homepage title oversized and purple with underline",
+      "location": "Home page H1",
+      "change": "fontSize: 4rem, color: #9932cc, textDecoration: underline",
+      "severity": "major",
+      "type": "style-change",
+      "visibility": "OBVIOUS - Huge purple title",
+      "expectedDetection": "High - Major visual change"
+    },
+    {
+      "id": "subtitle-misalignment",
+      "description": "Innovation Meets Excellence subtitle margin shift",
+      "location": "Hero section subtitle",
+      "change": "margin-left: 0px → 15px",
+      "severity": "minor",
+      "type": "layout-shift",
+      "visibility": "SUBTLE - Hard to notice without side-by-side",
+      "expectedDetection": "Medium - Layout shifts visible but subtle"
+    },
+    {
+      "id": "missing-card-shadows",
+      "description": "Missing box-shadow on first 3 Core Services cards",
+      "location": "Services section cards",
+      "change": "box-shadow: 0 2px 4px rgba(0,0,0,0.1) → none",
+      "severity": "minor",
+      "type": "missing-effect",
+      "visibility": "MODERATE - Noticeable depth difference",
+      "expectedDetection": "Medium - Shadow differences are detectable"
+    },
+    {
+      "id": "cta-button-shape",
+      "description": "CTA Button border-radius from rounded to square",
+      "location": "Hero section Get Started button",
+      "change": "border-radius: 50px → 5px",
+      "severity": "minor",
+      "type": "style-change",
+      "visibility": "OBVIOUS - Rounded vs square corners",
+      "expectedDetection": "High - Shape changes are obvious"
+    },
+    {
+      "id": "cta-button-position",
+      "description": "CTA Button shifted 30px to the right",
+      "location": "Hero section Get Started button",
+      "change": "margin-left: 0px → 30px",
+      "severity": "minor",
+      "type": "layout-shift",
+      "visibility": "OBVIOUS - Button clearly moved",
+      "expectedDetection": "High - Position changes are visible"
+    },
+    {
+      "id": "inconsistent-font-sizes",
+      "description": "Service titles have inconsistent font sizes",
+      "location": "Cybersecurity and Data Analytics titles",
+      "change": "Cybersecurity: 1.25rem → 1.1rem, Data Analytics: 1.25rem → 1.4rem",
+      "severity": "minor",
+      "type": "typography",
+      "visibility": "SUBTLE - Requires careful inspection",
+      "expectedDetection": "Low - Font size differences are subtle"
+    },
+    {
+      "id": "stats-label-opacity",
+      "description": "Statistics section labels much fainter",
+      "location": "Stats section label text",
+      "change": "opacity: 0.9 → 0.3",
+      "severity": "minor",
+      "type": "visual-effect",
+      "visibility": "MODERATE - Text appears much fainter",
+      "expectedDetection": "Medium - Opacity changes are visible"
+    },
+    {
+      "id": "team-background-color",
+      "description": "Team section background color slightly changed",
+      "location": "Team section background",
+      "change": "background-color: #f8f9fa → #f0f0f0",
+      "severity": "minor",
+      "type": "color-change",
+      "visibility": "VERY SUBTLE - Almost imperceptible",
+      "expectedDetection": "Low - Very subtle color differences"
+    },
+    {
+      "id": "contact-button-overlap",
+      "description": "Contact form submit button overlapping input field",
+      "location": "Contact form submit button",
+      "change": "margin-top: 20px → -10px (overlapping)",
+      "severity": "major",
+      "type": "layout-overlap",
+      "visibility": "OBVIOUS - Button clearly overlapping",
+      "expectedDetection": "High - Overlapping elements are obvious"
+    },
+    {
+      "id": "modal-overlay-gaps",
+      "description": "Modal overlay has gaps at top and left (from CSS bug)",
+      "location": "Modal overlay positioning",
+      "change": "top: 0, left: 0 → top: 50px, left: 50px",
+      "severity": "major",
+      "type": "layout-bug",
+      "visibility": "OBVIOUS - Clear gaps in overlay",
+      "expectedDetection": "High - Layout bugs are very visible"
+    },
+    {
+      "id": "cards-misaligned",
+      "description": "All cards shifted 50px to the right (CSS bug)",
+      "location": "All card elements",
+      "change": "margin-left: 0 → 50px",
+      "severity": "major",
+      "type": "layout-bug",
+      "visibility": "OBVIOUS - All cards clearly misaligned",
+      "expectedDetection": "High - Major layout shifts are obvious"
+    }
+  ],
+  "detectionAnalysis": {
+    "expectedDetections": {
+      "totalBugs": 12,
+      "majorBugs": 5,
+      "minorBugs": 7,
+      "obviousChanges": 7,
+      "subtleChanges": 3
+    },
+    "percyDetectionCapabilities": {
+      "colorChanges": "Excellent - RGB differences are Percy's strength",
+      "layoutShifts": "Excellent - Position changes clearly visible",
+      "styleChanges": "Excellent - Border radius, spacing differences obvious",
+      "missingEffects": "Good - Shadow differences create visible pixel changes",
+      "typographyChanges": "Good - Font size differences detectable",
+      "opacityChanges": "Good - Transparency changes affect all pixels",
+      "overlappingElements": "Excellent - Layout conflicts are very obvious",
+      "semanticContext": "Limited - Shows what changed, not why or impact"
+    },
+    "estimatedDetections": {
+      "highConfidenceDetected": [
+        "techcorp-logo-color - Color change (white→red) very obvious",
+        "home-title-purple - Purple oversized title impossible to miss",
+        "cta-button-shape - Rounded→square border radius obvious",
+        "cta-button-position - 30px position shift clearly visible",
+        "contact-button-overlap - Overlapping elements very obvious",
+        "modal-overlay-gaps - 50px gaps in overlay clearly visible",
+        "cards-misaligned - 50px card misalignment obvious"
+      ],
+      "mediumConfidenceDetected": [
+        "missing-card-shadows - Shadow differences create visible depth changes",
+        "stats-label-opacity - Opacity 0.9→0.3 creates fainter text",
+        "subtitle-misalignment - 15px margin shift visible with comparison"
+      ],
+      "lowConfidenceDetected": [
+        "inconsistent-font-sizes - Subtle font size differences (1.1rem vs 1.4rem)",
+        "team-background-color - Very subtle color change (#f8f9fa→#f0f0f0)"
+      ]
+    }
+  },
+  "accuracyMetrics": {
+    "estimatedAccuracy": {
+      "detectionRate": "83%",
+      "highConfidenceRate": "58%",
+      "precision": "High - Percy shows exact pixel differences with visual highlighting",
+      "recall": "High - Detects both major and minor visual changes reliably",
+      "falsePositives": "Low - Unlikely to flag non-existent differences",
+      "falseNegatives": "Low-Medium - May miss very subtle color/font changes"
+    },
+    "realWorldExpectation": {
+      "totalBugs": 12,
+      "likelyDetected": 10,
+      "possiblyDetected": 2,
+      "estimatedAccuracy": "83%",
+      "reasoning": "Based on actual visual differences injected into the application"
+    },
+    "comparisonWithOtherTools": {
+      "vsAI": {
+        "percyStrengths": [
+          "Pixel-perfect accuracy with visual highlighting",
+          "Exact change locations marked in dashboard",
+          "Cross-browser consistency testing",
+          "Baseline workflow prevents false positives"
+        ],
+        "aiStrengths": [
+          "Semantic understanding of visual impact",
+          "Natural language descriptions of changes",
+          "No baseline required for analysis",
+          "Contextual significance assessment"
+        ]
+      },
+      "vsApplitools": {
+        "similarities": [
+          "Visual regression detection",
+          "Cross-browser testing capabilities",
+          "Baseline comparison workflows",
+          "Visual diff highlighting"
+        ],
+        "differences": [
+          "Percy: More cost-effective for smaller teams",
+          "Applitools: More AI-powered analysis features",
+          "Percy: Simpler setup and configuration",
+          "Applitools: Advanced root cause analysis"
+        ]
+      }
+    }
+  },
+  "recommendations": {
+    "percyOptimization": [
+      "Review all snapshots in Percy dashboard manually",
+      "Approve valid baselines to improve accuracy",
+      "Use consistent snapshot naming for proper comparisons",
+      "Add percy-css to stabilize dynamic content",
+      "Test across multiple browsers for comprehensive coverage"
+    ],
+    "testingStrategy": [
+      "Use Percy for pixel-perfect regression testing",
+      "Combine with AI analysis for semantic understanding",
+      "Establish clean baselines before testing changes",
+      "Focus on major layout and visual changes",
+      "Document detected vs expected issues for continuous improvement"
+    ],
+    "accuracyImprovement": [
+      "Manually verify each Percy detection against known bugs",
+      "Create more granular test cases for specific components",
+      "Add interaction state testing (hover, focus, etc.)",
+      "Test responsive breakpoints systematically",
+      "Compare results with AI analysis for validation"
+    ]
+  }
+}

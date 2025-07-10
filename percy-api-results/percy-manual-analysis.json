@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-07-10T15:23:25.211Z",
+  "method": "manual",
+  "note": "API access limited - using manual analysis based on known builds",
+  "knownBuilds": [
+    {
+      "buildNumber": 14,
+      "description": "Bug detection build with visual differences",
+      "url": "https://percy.io/27df0096/web/TestableApp-c7f9047d/builds/latest",
+      "expectedDetections": "Multiple visual differences in broken page layout"
+    },
+    {
+      "buildNumber": 12,
+      "description": "Clean baseline establishment",
+      "url": "https://percy.io/27df0096/web/TestableApp-c7f9047d",
+      "expectedDetections": "No differences (baseline)"
+    }
+  ],
+  "analysisInstructions": [
+    "1. Visit Percy dashboard: https://percy.io/27df0096/web/TestableApp-c7f9047d",
+    "2. Review latest builds for visual differences",
+    "3. Check which snapshots show diffs vs baseline",
+    "4. Count detection accuracy manually"
+  ]
+}
